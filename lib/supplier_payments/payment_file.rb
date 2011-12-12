@@ -14,6 +14,7 @@ module SupplierPayments
 
     class AbstractRecord
       LayoutError = Class.new(Exception)
+      FormatError = Class.new(Exception)
 
       class << self
         attr_accessor :transaction_code
@@ -72,9 +73,13 @@ module SupplierPayments
       private
 
       def format_field(field, length, format, *opts)
+        value = field_value(field)
+        value.upcase! if opts.include?(:upcase)
+
         padding = opts.include?(:zerofill) ? "0" : " "
         align_method = opts.include?(:right_align) ? :rjust : :ljust
-        field_value(field).send(align_method, length, padding)
+
+        value[0, length].send(align_method, length, padding)
       end
 
       def field_value(field)
@@ -158,7 +163,7 @@ module SupplierPayments
         [ :transaction_code!, 2, 'N' ],
         [ :reserved!, 4, 'N' ], # 0000
         [ :credit_transfer_number, 6, 'N' ], # Must be the same as in the payment record or account number record, to which it belongs.
-        [ :payee_name, 35, 'A', :capitalize ],
+        [ :payee_name, 35, 'A', :upcase ],
         [ :extra_information, 33, 'A' ], # Used, for example, for C/O addresses.
       ]
     end
@@ -169,9 +174,9 @@ module SupplierPayments
         [ :transaction_code!, 2, 'N' ],
         [ :reserved!, 4, 'N', :zerofill ],
         [ :credit_transfer_number, 6, 'N', :right_align, :zerofill ],
-        [ :payee_address, 35, 'A', :capitalize ],
+        [ :payee_address, 35, 'A', :upcase ],
         [ :post_code, 5, 'N' ], # No spaces
-        [ :town, 20, 'A', :capitalize ],
+        [ :town, 20, 'A', :upcase ],
         [ :reserved!, 8, 'A' ]
       ]
     end

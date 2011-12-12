@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe SupplierPayments::PaymentFile::AbstractRecord do
-
   context 'with a test record class' do
     class TestRecord < SupplierPayments::PaymentFile::AbstractRecord
       self.transaction_code = '99'
@@ -10,7 +9,7 @@ describe SupplierPayments::PaymentFile::AbstractRecord do
         [ :foo, 14, 'N', :zerofill, :right_align ],
         [ :bar, 20, 'A' ],
         [ :reserved!, 5, 'N', :zerofill ],
-        [ :baz, 10, 'A', :right_align ],
+        [ :baz, 10, 'A', :right_align, :upcase ],
         [ :reserved!, 29, 'A' ]
       ]
     end
@@ -27,8 +26,15 @@ describe SupplierPayments::PaymentFile::AbstractRecord do
       record = TestRecord.new
       record.foo = 1234
       record.bar = "ASDFG"
-      record.baz = "GHIJK"
+      record.baz = "Ghijk"
       record.to_s.should == "9900000000001234ASDFG               00000     GHIJK                             "
+    end
+
+    it 'should strip long lines' do
+      record = TestRecord.new
+      record.foo = 314159265358979323846
+      record.to_s.length.should == 80
+      record.to_s.should == "9931415926535897                    00000                                       "
     end
   end
 
@@ -41,7 +47,6 @@ describe SupplierPayments::PaymentFile::AbstractRecord do
       end
     }.should raise_error(SupplierPayments::PaymentFile::AbstractRecord::LayoutError)
   end
-
 end
 
 describe SupplierPayments::PaymentFile do
