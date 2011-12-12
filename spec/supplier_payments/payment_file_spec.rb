@@ -51,15 +51,28 @@ end
 
 describe SupplierPayments::PaymentFile do
   describe ".load" do
-    before do
-      fixture_filename = File.join(File.dirname(__FILE__), '..', 'fixtures', 'LBin-exempel1.txt')
-      @raw_data = File.read(fixture_filename)
-      @raw_data.force_encoding("iso-8859-15")
+    context 'with LBin-exempel1.txt' do
+      before do
+        @raw_data = File.read(fixture_path('LBin-exempel1.txt'))
+        @raw_data.force_encoding("iso-8859-15")
+      end
+
+      it 'should load a file' do
+        file = SupplierPayments::PaymentFile.load(@raw_data)
+        file.records.size.should == @raw_data.lines.count
+      end
     end
 
-    it 'should load a file' do
-      file = SupplierPayments::PaymentFile.load(@raw_data)
-      file.records.size.should == @raw_data.lines.count
+    context 'with LBin-exempel2.txt' do
+      before do
+        @raw_data = File.read(fixture_path('LBin-exempel2.txt'))
+        @raw_data.force_encoding("iso-8859-15")
+      end
+
+      it 'should load a file' do
+        file = SupplierPayments::PaymentFile.load(@raw_data)
+        file.records.size.should == @raw_data.lines.count
+      end
     end
   end
 end
