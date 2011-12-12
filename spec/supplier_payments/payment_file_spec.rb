@@ -10,8 +10,8 @@ describe SupplierPayments::PaymentFile do
 
       it 'should load a file' do
         file = SupplierPayments::PaymentFile.load(@raw_data)
-        @raw_data.lines.zip(file.records).each do |line, record|
-          line.strip.should == record.to_s.force_encoding('iso-8859-15').strip
+        @raw_data.lines.zip(file.to_s.lines).each do |line1, line2|
+          line1.strip.should == line2.force_encoding("iso-8859-15").strip
         end
       end
     end
@@ -24,8 +24,8 @@ describe SupplierPayments::PaymentFile do
 
       it 'should load a file' do
         file = SupplierPayments::PaymentFile.load(@raw_data)
-        @raw_data.lines.zip(file.records).each do |line, record|
-          line.strip.should == record.to_s.force_encoding('iso-8859-15').strip
+        @raw_data.lines.zip(file.to_s.lines).each do |line1, line2|
+          line1.strip.should == line2.force_encoding("iso-8859-15").strip
         end
       end
     end

@@ -18,6 +18,12 @@ module SupplierPayments
       @records = records
     end
 
+    def to_s
+      records.map { |record|
+        "#{ record.to_s }\r\n"
+      }.join
+    end
+
     def self.load(data)
       records = data.lines.map do |line|
         line.strip!
