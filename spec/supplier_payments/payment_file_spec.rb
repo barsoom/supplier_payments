@@ -6,7 +6,7 @@ describe SupplierPayments::PaymentFile::AbstractRecord do
     class TestRecord < SupplierPayments::PaymentFile::AbstractRecord
       self.transaction_code = '99'
       self.layout = [
-        [ :transaction_code, 2, 'N' ],
+        [ :transaction_code!, 2, 'N' ],
         [ :foo, 14, 'N', :zerofill, :right_align ],
         [ :bar, 20, 'A' ],
         [ :reserved!, 5, 'N', :zerofill ],
@@ -24,8 +24,6 @@ describe SupplierPayments::PaymentFile::AbstractRecord do
     end
 
     it 'should make a line' do
-      pending
-
       record = TestRecord.new
       record.foo = 1234
       record.bar = "ASDFG"

@@ -24,7 +24,7 @@ module SupplierPayments
           record = new
 
           layout.each do |field, length, format, *opts|
-            if field == :reserved!
+            if field[-1] == "!"
               io.seek(length, IO::SEEK_CUR)
             else
               record.send("#{ field }=", io.read(length))
@@ -41,7 +41,7 @@ module SupplierPayments
           raise LayoutError.new("Layout length #{ length } is not 80") unless length == 80
 
           layout.each do |field, length, format, *opts|
-            next if field == :reserved!
+            next if field[-1] == "!"
             attr_accessor field
           end
 
@@ -60,14 +60,39 @@ module SupplierPayments
       end
 
       def to_s
+        self.class.layout.map { |field, length, format, *opts|
+          format_field(field, length, format, *opts)
+        }.join
+      end
 
+      def transaction_code
+        self.class.transaction_code
+      end
+
+      private
+
+      def format_field(field, length, format, *opts)
+        padding = opts.include?(:zerofill) ? "0" : " "
+        align_method = opts.include?(:right_align) ? :rjust : :ljust
+        field_value(field).send(align_method, length, padding)
+      end
+
+      def field_value(field)
+        case field
+        when :reserved!
+          ""
+        when :transaction_code!
+          transaction_code
+        else
+          send(field).to_s
+        end
       end
     end
 
     class OpeningRecord < AbstractRecord
       self.transaction_code = '11'
       self.layout = [
-        [ :transaction_code, 2, 'N' ],
+        [ :transaction_code!, 2, 'N' ],
         [ :sender_bankgiro, 10, 'N', :right_align, :zerofill ],
         [ :bgc_date_written, 6, 'N' ],
         [ :product, 22, 'A' ],
@@ -82,7 +107,7 @@ module SupplierPayments
     class HeaderRecord < AbstractRecord
       self.transaction_code = '13'
       self.layout = [
-        [ :transaction_code, 2, 'N' ],
+        [ :transaction_code!, 2, 'N' ],
         [ :payment_specifications_header, 25, 'A' ],
         [ :net_amount_header, 12, 'A' ],
         [ :reserved!, 41, 'A' ]
@@ -92,7 +117,7 @@ module SupplierPayments
     class PaymentRecord < AbstractRecord
       self.transaction_code = '14'
       self.layout = [
-        [ :transaction_code, 2, 'N' ],
+        [ :transaction_code!, 2, 'N' ],
         [ :bankgiro_or_credit_transfer_number, 10, 'N', :right_align, :zerofill ],
         [ :ocr, 25, 'A' ],
         [ :amount, 12, 'N', :right_align, :zerofill ],
@@ -105,7 +130,7 @@ module SupplierPayments
     class CreditInvoiceWithMonitoringRecord < AbstractRecord
       self.transaction_code = '16'
       self.layout = [
-        [ :transaction_code, 2, 'N' ],
+        [ :transaction_code!, 2, 'N' ],
         [ :bankgiro_or_credit_transfer_number, 10, 'N', :right_align, :zerofill ],
         [ :ocr, 25, 'A' ],
         [ :amount, 12, 'N', :right_align, :zerofill ],
@@ -118,7 +143,7 @@ module SupplierPayments
     class TotalAmountRecord < AbstractRecord
       self.transaction_code = '29'
       self.layout = [
-        [ :transaction_code, 2, 'N' ],
+        [ :transaction_code!, 2, 'N' ],
         [ :senders_bankgiro_number, 10, 'N', :right_align, :zerofill ],
         [ :number_of_payment_records, 8, 'N', :right_align, :zerofill ],
         [ :total_amount, 12, 'N', :right_align, :zerofill ],
@@ -130,7 +155,7 @@ module SupplierPayments
     class NameRecord < AbstractRecord
       self.transaction_code = '26'
       self.layout = [
-        [ :transaction_code, 2, 'N' ],
+        [ :transaction_code!, 2, 'N' ],
         [ :reserved!, 4, 'N' ], # 0000
         [ :credit_transfer_number, 6, 'N' ], # Must be the same as in the payment record or account number record, to which it belongs.
         [ :payee_name, 35, 'A', :capitalize ],
@@ -141,7 +166,7 @@ module SupplierPayments
     class AddressRecord < AbstractRecord
       self.transaction_code = '27'
       self.layout = [
-        [ :transaction_code, 2, 'N' ],
+        [ :transaction_code!, 2, 'N' ],
         [ :reserved!, 4, 'N', :zerofill ],
         [ :credit_transfer_number, 6, 'N', :right_align, :zerofill ],
         [ :payee_address, 35, 'A', :capitalize ],
@@ -154,7 +179,7 @@ module SupplierPayments
     class AccountNumberRecord < AbstractRecord
       self.transaction_code = '40'
       self.layout = [
-        [ :transaction_code, 2, 'N' ],
+        [ :transaction_code!, 2, 'N' ],
         [ :reserved!, 4, 'N', :zerofill ], # 0000
         [ :credit_transfer_number, 6 ],
         [ :clearing_number, 4, 'N' ],
