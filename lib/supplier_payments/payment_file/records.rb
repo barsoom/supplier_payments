@@ -185,7 +185,7 @@ module SupplierPayments
       self.transaction_code = '29'
       self.layout = [
         [ :transaction_code!, 2, 'N' ],
-        [ :senders_bankgiro_number, 10, 'N', :right_align, :zerofill ],
+        [ :sender_bankgiro, 10, 'N', :right_align, :zerofill ],
         [ :number_of_payment_records, 8, 'N', :right_align, :zerofill ],
         [ :total_amount, 12, 'N', :right_align, :zerofill ],
         [ :negative_total_amount, 1, 'A' ], # Minus sign (if total amount is negative) or blank.
