@@ -198,7 +198,7 @@ module SupplierPayments
       self.layout = [
         [ :transaction_code!, 2, 'N' ],
         [ :reserved!, 4, 'N', :zerofill ], # 0000
-        [ :credit_transfer_number, 6, 'N' ], # Must be the same as in the payment record or account number record, to which it belongs.
+        [ :credit_transfer_number, 6, 'N', :right_align, :zerofill ], # Must be the same as in the payment record or account number record, to which it belongs.
         [ :payee_name, 35, 'A', :upcase ],
         [ :extra_information, 33, 'A' ], # Used, for example, for C/O addresses.
       ]
@@ -222,7 +222,7 @@ module SupplierPayments
       self.layout = [
         [ :transaction_code!, 2, 'N' ],
         [ :reserved!, 4, 'N', :zerofill ], # 0000
-        [ :credit_transfer_number, 6 ],
+        [ :credit_transfer_number, 6, :right_align, :zerofill ],
         [ :clearing_number, 4, 'N' ],
         [ :account_number, 12, 'N', :right_align, :zerofill ],
         [ :payment_identification, 12, 'A' ], # Information to the payee to identify the payment. Printed on the payee's bank statement.
