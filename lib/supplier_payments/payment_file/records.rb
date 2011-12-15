@@ -104,8 +104,7 @@ module SupplierPayments
         [ :bgc_date_written, 6, 'N' ],
         [ :product, 22, 'A' ],
         [ :payment_date, 6, 'N' ],
-        [ :report_code, 1, 'N' ],
-        [ :reserved!, 12, 'N' ],
+        [ :reserved!, 13, 'N' ],
         [ :currency_code, 3, 'A' ],
         [ :reserved!, 18, 'A' ],
       ]
