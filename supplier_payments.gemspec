@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = SupplierPayments::VERSION
   s.authors     = ["Andreas Alin"]
   s.email       = ["andreas.alin@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://github.com/barsoom/supplier_payments"
+  s.summary     = %q{Supplier payment files}
+  s.description = %q{This gem should help you parse and generate supplier payment files that will work with BGC.}
 
   s.rubyforge_project = "supplier_payments"
 
