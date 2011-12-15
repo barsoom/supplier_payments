@@ -222,7 +222,7 @@ module SupplierPayments
       self.layout = [
         [ :transaction_code!, 2, 'N' ],
         [ :reserved!, 4, 'N', :zerofill ], # 0000
-        [ :credit_transfer_number, 6, :right_align, :zerofill ],
+        [ :credit_transfer_number, 6, 'N', :right_align, :zerofill ],
         [ :clearing_number, 4, 'N' ],
         [ :account_number, 12, 'N', :right_align, :zerofill ],
         [ :payment_identification, 12, 'A' ], # Information to the payee to identify the payment. Printed on the payee's bank statement.
