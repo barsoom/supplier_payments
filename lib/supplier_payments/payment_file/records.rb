@@ -101,7 +101,7 @@ module SupplierPayments
       self.layout = [
         [ :transaction_code!, 2, 'N' ],
         [ :sender_bankgiro, 10, 'N', :right_align, :zerofill ],
-        [ :bgc_date_written, 6, 'N' ],
+        [ :date_written, 6, 'N' ],
         [ :product, 22, 'A' ],
         [ :payment_date, 6, 'N' ],
         [ :reserved!, 13, 'N' ],
