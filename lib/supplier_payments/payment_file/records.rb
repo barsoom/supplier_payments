@@ -37,7 +37,6 @@ module SupplierPayments
         io = StringIO.new(line)
         record = new
 
-        begin
         layout.each do |field, length, format, *opts|
           if field[-1] == "!"
             io.seek(length, IO::SEEK_CUR)
@@ -45,18 +44,28 @@ module SupplierPayments
             record.send("#{ field }=", io.read(length))
           end
         end
-        rescue => e
-          p line
-          raise
-        end
 
         record
+      end
+
+      def initialize(attrs = {})
+        attrs.each do |key, value|
+          self.send("#{ key }=", value)
+        end
       end
 
       def to_s
         self.class.layout.map { |field, length, format, *opts|
           format_field(field, length, format, *opts)
         }.join
+      end
+
+      def inspect
+        str = self.class.layout.map { |field, length, format, *opts|
+          next if field[-1] == "!"
+          ":#{ field } => #{ send(field).inspect }"
+        }.compact.join(", ")
+        "<#{ self.class.name }(#{ transaction_code }) #{ str }>"
       end
 
       def transaction_code
