@@ -99,3 +99,4 @@ module SupplierPayments
 end
 
 require "supplier_payments/payment_file/domestic_records"
+require "supplier_payments/payment_file/international_records"
