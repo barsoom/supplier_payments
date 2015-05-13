@@ -36,7 +36,7 @@ module SupplierPayments
         [ :riksbank_country_code, 2, 'A' ],
         [ :reserved!, 1, 'A' ],
         [ :cost_debiting, 1, 'A' ], # 0 sender pays swedish costs, 2 payee pays, 3 sender pays everything
-        [ :means_of_payment, 1, 'A' ], # TODO: figure out the possible values
+        [ :means_of_payment, 1, 'A' ], # 0 for a cheque, 1 for SWIFT transfers
         [ :payment_method, 1, 'A' ], # 0 normal, 1 express, 2 inter-company
       ]
     end
