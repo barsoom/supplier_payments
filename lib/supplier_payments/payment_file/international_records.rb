@@ -9,7 +9,7 @@ module SupplierPayments
         [ :sender_name, 22, 'A' ],
         [ :sender_address, 35, 'A' ],
         [ :payment_date, 6, 'N' ],
-        [ :layout_code!, 1, 'N' ], # number of digits of sender_bankgiro, 1 for 7 digits, 2 for 8 digits
+        [ :layout_code, 1, 'N' ], # number of digits of sender_bankgiro, 1 for 7 digits, 2 for 8 digits
         [ :reserved!, 1, 'A' ],
       ]
     end
@@ -66,7 +66,7 @@ module SupplierPayments
         [ :reserved!, 1, 'N' ],
         [ :invoice_amount, 13, 'N', :right_align, :zerofill ],
         [ :reserved!, 1, 'A' ],
-        [ :zero_filled!, 1, 'N', :zerofill ],
+        [ :reserved!, 1, 'N', :zerofill ],
       ]
     end
 
