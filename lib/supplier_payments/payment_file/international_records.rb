@@ -70,7 +70,7 @@ module SupplierPayments
       ]
     end
 
-    class InternationalDebitInvoiceRecord < AbstractRecord
+    class InternationalInvoiceRecord < AbstractRecord
       self.transaction_code = '6'
       self.layout = [
         [ :transaction_code!, 1, 'N' ],
