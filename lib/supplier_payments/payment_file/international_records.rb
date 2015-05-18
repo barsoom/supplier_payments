@@ -84,7 +84,7 @@ module SupplierPayments
         [ :reserved!, 1, 'N' ],
         [ :invoice_amount, 13, 'N', :right_align, :zerofill ],
         [ :reserved!, 1, 'A' ],
-        [ :zero_filled!, 1, 'N', :zerofill ],
+        [ :reserved!, 1, 'N', :zerofill ],
       ]
     end
 
