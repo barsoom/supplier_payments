@@ -20,7 +20,7 @@ module SupplierPayments
 
     def to_s
       records.map { |record|
-        "#{ record.to_s }\r\n"
+        "#{ record.to_s.force_encoding("ISO-8859-15") }\r\n"
       }.join
     end
 
