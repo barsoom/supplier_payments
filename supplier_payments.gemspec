@@ -11,8 +11,6 @@ Gem::Specification.new do |s|
   s.summary     = %q{Supplier payment files}
   s.description = %q{This gem should help you parse and generate supplier payment files that will work with BGC.}
 
-  s.rubyforge_project = "supplier_payments"
-
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
