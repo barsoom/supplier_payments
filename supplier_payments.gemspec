@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Andreas Alin"]
   s.email       = ["andreas.alin@gmail.com"]
   s.homepage    = "https://github.com/barsoom/supplier_payments"
-  s.summary     = %q{Supplier payment files}
-  s.description = %q{This gem should help you parse and generate supplier payment files that will work with BGC.}
+  s.summary     = %q{Parse and generate supplier payment files for Bankgirot.}
+  s.description = %q{Parse and generate supplier payment files for "Leverantörsbetalningar" in Bankgirot.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
