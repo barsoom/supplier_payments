@@ -87,11 +87,11 @@ module SupplierPayments
       def field_value(field)
         case field
         when :reserved!
-          ""
+          +""
         when :transaction_code!
-          transaction_code
+          transaction_code.dup
         else
-          send(field).to_s
+          send(field).to_s.dup
         end
       end
     end
