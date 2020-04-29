@@ -1,0 +1,14 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@0.2.2
+
+jobs:
+  build:
+    environment:
+      BUNDLE_PATH: vendor/bundle
+    executor: ruby/default
+    steps:
+      - checkout
+      - ruby/install-deps
+      - ruby/run-tests
+
