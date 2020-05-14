@@ -10,5 +10,5 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - ruby/run-tests
+      - ruby/rspec-test
 
