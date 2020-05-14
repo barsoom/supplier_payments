@@ -4,8 +4,6 @@ orbs:
 
 jobs:
   build:
-    environment:
-      BUNDLE_PATH: vendor/bundle
     executor: ruby/default
     steps:
       - checkout
