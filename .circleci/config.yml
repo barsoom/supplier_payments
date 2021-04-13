@@ -4,6 +4,8 @@ orbs:
 
 jobs:
   build:
+    environment:
+      APP_BUNDLER_VERSION: 2.2.16
     executor: ruby/default
     steps:
       - checkout
