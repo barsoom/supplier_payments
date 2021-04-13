@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{Parse and generate supplier payment files for Bankgirot.}
   s.description = %q{Parse and generate supplier payment files for "Leverantörsbetalningar" in Bankgirot.}
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.files         = Dir["lib/**/*.rb", "README.md"]
+  s.test_files    = Dir["spec/**/*.{rb,txt}"]
   s.require_paths = ["lib"]
 end
