@@ -8,6 +8,7 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps:
+          bundler-version: 2.2.16
           with-cache: false
       - ruby/rspec-test
 
