@@ -1,11 +1,11 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@1.1.2
+  ruby: circleci/ruby@1.1.4
 
 jobs:
   build:
     environment:
-      APP_BUNDLER_VERSION: 2.2.16 # This is how the Orb can choose a Bundler version without a Gemfile.lock
+      APP_BUNDLER_VERSION: 2.2.25 # This is how the Orb can choose a Bundler version without a Gemfile.lock
     executor: ruby/default
     steps:
       - checkout
