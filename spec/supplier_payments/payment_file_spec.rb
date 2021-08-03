@@ -1,14 +1,14 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe SupplierPayments::PaymentFile do
   describe ".load" do
-    context 'with LBin-exempel1.txt' do
+    context "with LBin-exempel1.txt" do
       before do
-        @raw_data = File.read(fixture_path('LBin-exempel1.txt'))
+        @raw_data = File.read(fixture_path("LBin-exempel1.txt"))
         @raw_data.force_encoding("iso-8859-15")
       end
 
-      it 'should load a file' do
+      it "should load a file" do
         file = SupplierPayments::PaymentFile.load(@raw_data)
         @raw_data.lines.zip(file.to_s.lines).each do |line1, line2|
           expect(line1.strip).to eq(line2.force_encoding("iso-8859-15").strip)
@@ -16,13 +16,13 @@ describe SupplierPayments::PaymentFile do
       end
     end
 
-    context 'with LBin-exempel2.txt' do
+    context "with LBin-exempel2.txt" do
       before do
-        @raw_data = File.read(fixture_path('LBin-exempel2.txt'))
+        @raw_data = File.read(fixture_path("LBin-exempel2.txt"))
         @raw_data.force_encoding("iso-8859-15")
       end
 
-      it 'should load a file' do
+      it "should load a file" do
         file = SupplierPayments::PaymentFile.load(@raw_data)
         @raw_data.lines.zip(file.to_s.lines).each do |line1, line2|
           expect(line1.strip).to eq(line2.force_encoding("iso-8859-15").strip)
@@ -33,14 +33,14 @@ describe SupplierPayments::PaymentFile do
 
   describe "#to_s" do
     class TestRecord < SupplierPayments::PaymentFile::AbstractRecord
-      self.transaction_code = '99'
+      self.transaction_code = "99"
       self.layout = [
-        [ :transaction_code!, 2, 'N' ],
-        [ :foo, 14, 'N', :zerofill, :right_align ],
-        [ :bar, 20, 'A' ],
-        [ :reserved!, 5, 'N', :zerofill ],
-        [ :baz, 10, 'A', :right_align, :upcase ],
-        [ :reserved!, 29, 'A' ]
+        [ :transaction_code!, 2, "N" ],
+        [ :foo, 14, "N", :zerofill, :right_align ],
+        [ :bar, 20, "A" ],
+        [ :reserved!, 5, "N", :zerofill ],
+        [ :baz, 10, "A", :right_align, :upcase ],
+        [ :reserved!, 29, "A" ]
       ]
     end
 
