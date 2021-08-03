@@ -40,7 +40,7 @@ describe SupplierPayments::PaymentFile do
         [ :bar, 20, "A" ],
         [ :reserved!, 5, "N", :zerofill ],
         [ :baz, 10, "A", :right_align, :upcase ],
-        [ :reserved!, 29, "A" ]
+        [ :reserved!, 29, "A" ],
       ]
     end
 

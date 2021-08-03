@@ -10,7 +10,7 @@ describe SupplierPayments::PaymentFile::AbstractRecord do
         [ :bar, 20, "A" ],
         [ :reserved!, 5, "N", :zerofill ],
         [ :baz, 10, "A", :right_align, :upcase ],
-        [ :reserved!, 29, "A" ]
+        [ :reserved!, 29, "A" ],
       ]
     end
 
@@ -43,7 +43,7 @@ describe SupplierPayments::PaymentFile::AbstractRecord do
       Class.new(SupplierPayments::PaymentFile::AbstractRecord) do
         self.transaction_code = "98"
         self.layout = [
-          [ :transaction_code, 2, "N" ]
+          [ :transaction_code, 2, "N" ],
         ]
       end
     }.to raise_error(SupplierPayments::PaymentFile::AbstractRecord::LayoutError)

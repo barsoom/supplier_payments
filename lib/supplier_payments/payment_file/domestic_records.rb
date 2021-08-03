@@ -22,7 +22,7 @@ module SupplierPayments
                                         # all sections with the same forwarding bankgiro number
                                         # (For example: Merry Christmas, We have moved etc.) or blank.
         [ :end_date, 6, "A" ],
-        [ :reserved!, 22, "A" ]
+        [ :reserved!, 22, "A" ],
       ]
     end
 
@@ -32,7 +32,7 @@ module SupplierPayments
         [ :transaction_code!, 2, "N" ],
         [ :payment_specifications_header, 25, "A" ],
         [ :net_amount_header, 12, "A" ],
-        [ :reserved!, 41, "A" ]
+        [ :reserved!, 41, "A" ],
       ]
     end
 
@@ -45,7 +45,7 @@ module SupplierPayments
         [ :amount, 12, "N", :right_align, :zerofill ],
         [ :payment_date, 6, "N" ], # YYMMDD or GENAST
         [ :reserved!, 5, "A" ],
-        [ :information_to_sender, 20, "A" ]
+        [ :information_to_sender, 20, "A" ],
       ]
     end
 
@@ -58,7 +58,7 @@ module SupplierPayments
         [ :deduction_amount, 12, "N", :right_align, :zerofill ],
         [ :deduction_date, 6, "N" ], # YYMMDD or GENAST
         [ :reserved!, 5, "A" ],
-        [ :information_to_sender, 20, "A" ]
+        [ :information_to_sender, 20, "A" ],
       ]
     end
 
@@ -71,7 +71,7 @@ module SupplierPayments
         [ :amount, 12, "N", :right_align, :zerofill ],
         [ :last_monitoring_day, 6, "A" ], # YYMMDD or GENAST
         [ :reserved!, 5, "A" ],
-        [ :information_to_sender, 20, "N" ]
+        [ :information_to_sender, 20, "N" ],
       ]
     end
 
@@ -93,7 +93,7 @@ module SupplierPayments
         [ :number_of_payment_records, 8, "N", :right_align, :zerofill ],
         [ :total_amount, 12, "N", :right_align, :zerofill ],
         [ :negative_total_amount, 1, "A" ], # Minus sign (if total amount is negative) or blank.
-        [ :reserved!, 47, "A" ]
+        [ :reserved!, 47, "A" ],
       ]
     end
 
@@ -117,7 +117,7 @@ module SupplierPayments
         [ :payee_address, 35, "A", :upcase ],
         [ :post_code, 5, "N" ], # No spaces
         [ :town, 20, "A", :upcase ],
-        [ :reserved!, 8, "A" ]
+        [ :reserved!, 8, "A" ],
       ]
     end
 
@@ -131,7 +131,7 @@ module SupplierPayments
         [ :account_number, 12, "N", :right_align, :zerofill ],
         [ :payment_identification, 12, "A" ], # Information to the payee to identify the payment. Printed on the payee's bank statement.
         [ :code_for_salary, 1, "A" ], # L for salary, else blank.
-        [ :reserved!, 39, "A" ]
+        [ :reserved!, 39, "A" ],
       ]
     end
 
@@ -144,7 +144,7 @@ module SupplierPayments
         [ :amount, 12, "N", :right_align, :zerofill ],
         [ :payment_date, 6, "A" ], # YYMMDD or GENAST.
         [ :reserved!, 5, "A" ],
-        [ :information_to_sender, 20, "A" ] # Optional text or blank.
+        [ :information_to_sender, 20, "A" ], # Optional text or blank.
       ]
     end
 
@@ -154,7 +154,7 @@ module SupplierPayments
         [ :transaction_code!, 2, "N" ],
         [ :plusgiro_account, 10, "N", :right_align, :zerofill ],
         [ :information_text, 35, "A" ], # Optional text, printed on notifications and lists.
-        [ :reserved!, 33, "A" ]
+        [ :reserved!, 33, "A" ],
       ]
     end
   end
