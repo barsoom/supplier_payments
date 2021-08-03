@@ -20,7 +20,7 @@ module SupplierPayments
 
     def to_s
       records.map { |record|
-        "#{ record.to_s.dup.force_encoding("ISO-8859-15") }\r\n"
+        "#{record.to_s.dup.force_encoding("ISO-8859-15")}\r\n"
       }.join
     end
 
@@ -38,7 +38,7 @@ module SupplierPayments
     def self.record_class(line)
       record_classes.find do |record_class|
         line.match(/^#{record_class.transaction_code}/)
-      end or raise "No record class found for line: #{ line.inspect }"
+      end or raise "No record class found for line: #{line.inspect}"
     end
   end
 end

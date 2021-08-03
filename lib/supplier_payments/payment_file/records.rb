@@ -12,7 +12,7 @@ module SupplierPayments
 
         def layout=(layout)
           length = layout_length(layout)
-          raise LayoutError.new("Layout length #{ length } is not 80") unless length == 80
+          raise LayoutError.new("Layout length #{length} is not 80") unless length == 80
 
           layout.each do |field, length, format, *opts|
             next if field[-1] == "!"
@@ -41,7 +41,7 @@ module SupplierPayments
           if field[-1] == "!"
             io.seek(length, IO::SEEK_CUR)
           else
-            record.send("#{ field }=", io.read(length))
+            record.send("#{field}=", io.read(length))
           end
         end
 
@@ -50,7 +50,7 @@ module SupplierPayments
 
       def initialize(attrs = {})
         attrs.each do |key, value|
-          self.send("#{ key }=", value)
+          self.send("#{key}=", value)
         end
       end
 
@@ -63,9 +63,9 @@ module SupplierPayments
       def inspect
         str = self.class.layout.map { |field, length, format, *opts|
           next if field[-1] == "!"
-          ":#{ field } => #{ send(field).inspect }"
+          ":#{field} => #{send(field).inspect}"
         }.compact.join(", ")
-        "<#{ self.class.name }(#{ transaction_code }) #{ str }>"
+        "<#{self.class.name}(#{transaction_code}) #{str}>"
       end
 
       def transaction_code
