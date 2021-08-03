@@ -28,6 +28,7 @@ module SupplierPayments
       records = data.lines.map do |line|
         line.strip!
         next if line.empty?
+
         record_class(line).parse(line)
       end
       new(records)

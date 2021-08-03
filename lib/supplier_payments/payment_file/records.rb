@@ -16,6 +16,7 @@ module SupplierPayments
 
           layout.each do |field, length, format, *opts|
             next if field[-1] == "!"
+
             attr_accessor field
           end
 
@@ -63,6 +64,7 @@ module SupplierPayments
       def inspect
         str = self.class.layout.map { |field, length, format, *opts|
           next if field[-1] == "!"
+
           ":#{field} => #{send(field).inspect}"
         }.compact.join(", ")
         "<#{self.class.name}(#{transaction_code}) #{str}>"
