@@ -1,6 +1,6 @@
 # Supplier Payments
 
-[![CircleCI](https://circleci.com/gh/barsoom/supplier_payments.svg?style=svg)](https://circleci.com/gh/barsoom/supplier_payments)
+[![CI](https://github.com/barsoom/supplier_payments/actions/workflows/ci.yml/badge.svg)](https://github.com/barsoom/supplier_payments/actions/workflows/ci.yml)
 
 Library for making Bankgirot supplier payment files, _Leverantörsbetalningar_.
 
