@@ -2,7 +2,7 @@ require "./lib/supplier_payments"
 
 module FixtureHelper
   def fixture_path(filename)
-    File.join(File.dirname(__FILE__), "fixtures", filename)
+    File.join(__dir__, "fixtures", filename)
   end
 end
 
