@@ -13,6 +13,5 @@ Gem::Specification.new do |s|
   s.metadata    = { "rubygems_mfa_required" => "true" }
 
   s.files         = Dir["lib/**/*.rb", "README.md"]
-  s.test_files    = Dir["spec/**/*.{rb,txt}"]
   s.require_paths = [ "lib" ]
 end
