@@ -1,6 +1,4 @@
-require "spec_helper"
-
-describe SupplierPayments::PaymentFile do
+RSpec.describe SupplierPayments::PaymentFile do
   describe ".load" do
     context "with LBin-exempel1.txt" do
       before do

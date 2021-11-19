@@ -8,4 +8,5 @@ end
 
 RSpec.configure do |config|
   config.include FixtureHelper
+  config.disable_monkey_patching!
 end

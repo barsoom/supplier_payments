@@ -1,6 +1,4 @@
-require "spec_helper"
-
-describe SupplierPayments::PaymentFile::AbstractRecord do
+RSpec.describe SupplierPayments::PaymentFile::AbstractRecord do
   context "with a test record class" do
     class TestRecord < SupplierPayments::PaymentFile::AbstractRecord
       self.transaction_code = "99"
