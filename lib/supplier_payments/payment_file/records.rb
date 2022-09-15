@@ -24,7 +24,7 @@ module SupplierPayments
         end
 
         def layout_length(layout)
-          layout.inject(0) do |total, (field, length, format, *opts)|
+          layout.reduce(0) do |total, (field, length, format, *opts)|
             total + length
           end
         end
