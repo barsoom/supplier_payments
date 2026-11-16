@@ -19,9 +19,7 @@ module SupplierPayments
     end
 
     def to_s
-      records.map { |record|
-        "#{record.to_s.dup.force_encoding("ISO-8859-15")}\r\n"
-      }.join
+      records.map { |record| "#{record}\r\n" }.join.force_encoding("ISO-8859-15")
     end
 
     def self.load(data)
