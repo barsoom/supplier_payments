@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe SupplierPayments::PaymentFile::AbstractRecord do
   context "with a test record class" do
     class TestRecord < SupplierPayments::PaymentFile::AbstractRecord

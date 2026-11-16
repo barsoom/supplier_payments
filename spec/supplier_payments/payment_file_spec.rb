@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe SupplierPayments::PaymentFile do
   describe ".load" do
     context "with LBin-exempel1.txt" do

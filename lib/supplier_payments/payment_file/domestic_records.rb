@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SupplierPayments
   class PaymentFile
     class OpeningRecord < AbstractRecord
